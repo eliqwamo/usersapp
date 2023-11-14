@@ -1,18 +1,24 @@
-import { Container, Row, Col, Badge, ListGroup } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Badge,
+  ListGroup,
+  Button,
+  Card,
+} from "react-bootstrap";
+import Bcard from "./components/Bcard";
+import Blistgroup from "./components/Blistgroup";
+import AvatarBox from "./components/AvatarBox";
 
 const App = () => {
-
-  /*
-  avatar
-  name
-  email
-  city, country
-  phone
-  */
 
   const users = [
     {
       id: 1,
+      isLogged: true,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/face3_cbnzio.png",
       name: "Leanne Graham",
       username: "Bret",
       email: "Sincere@april.biz",
@@ -36,6 +42,9 @@ const App = () => {
     },
     {
       id: 2,
+      isLogged: false,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/face2_f8i1fn.png",
       name: "Ervin Howell",
       username: "Antonette",
       email: "Shanna@melissa.tv",
@@ -59,6 +68,9 @@ const App = () => {
     },
     {
       id: 3,
+      isLogged: false,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/face4_dx3nu6.png",
       name: "Clementine Bauch",
       username: "Samantha",
       email: "Nathan@yesenia.net",
@@ -82,6 +94,9 @@ const App = () => {
     },
     {
       id: 4,
+      isLogged: false,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/face5_faljpu.png",
       name: "Patricia Lebsack",
       username: "Karianne",
       email: "Julianne.OConner@kory.org",
@@ -105,6 +120,9 @@ const App = () => {
     },
     {
       id: 5,
+      isLogged: true,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879015/avatars/face1_rhjego.png",
       name: "Chelsey Dietrich",
       username: "Kamren",
       email: "Lucio_Hettinger@annie.ca",
@@ -128,6 +146,9 @@ const App = () => {
     },
     {
       id: 6,
+      isLogged: false,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/character7_u3r1ec.png",
       name: "Mrs. Dennis Schulist",
       username: "Leopoldo_Corkery",
       email: "Karley_Dach@jasper.info",
@@ -151,6 +172,9 @@ const App = () => {
     },
     {
       id: 7,
+      isLogged: false,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/character6_bnnhx1.png",
       name: "Kurtis Weissnat",
       username: "Elwyn.Skiles",
       email: "Telly.Hoeger@billy.biz",
@@ -174,6 +198,9 @@ const App = () => {
     },
     {
       id: 8,
+      isLogged: true,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/character3_lpd4gi.png",
       name: "Nicholas Runolfsdottir V",
       username: "Maxime_Nienow",
       email: "Sherwood@rosamond.me",
@@ -197,6 +224,9 @@ const App = () => {
     },
     {
       id: 9,
+      isLogged: false,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/character4_vk2ven.png",
       name: "Glenna Reichert",
       username: "Delphine",
       email: "Chaim_McDermott@dana.io",
@@ -220,6 +250,9 @@ const App = () => {
     },
     {
       id: 10,
+      isLogged: true,
+      avatar:
+        "https://res.cloudinary.com/united-app/image/upload/v1638879014/avatars/character2_iwlus2.png",
       name: "Clementina DuBuque",
       username: "Moriah.Stanton",
       email: "Rey.Padberg@karina.biz",
@@ -242,6 +275,7 @@ const App = () => {
       },
     },
   ];
+  const sqlabs = {lat:32.08657179353594, lon:34.80042191008685};
 
   return (
     <>
@@ -253,29 +287,36 @@ const App = () => {
 
             {users.length > 0 ? (
               <>
-                <ListGroup as="ol" numbered>
-                  {users.map((item) => (
-                    <ListGroup.Item
-                      key={item.id}
-                      as="li"
-                      className="d-flex justify-content-between align-items-start">
-                      <div className="ms-2 me-auto">
-                        <div className="fw-bold">{item.name}</div>
-                        {item.email}<br/>
-                        {item.address.city}
-                      </div>
-                      <Badge bg="primary" pill>{item.id}</Badge>
-                    </ListGroup.Item>
+
+                <Container>
+                  <Row>
+                      {
+                        users.map((user) => (
+                          <AvatarBox user={user} home={sqlabs} />
+                        ))
+                      }
+                  </Row>
+                </Container>
+
+                {/* <Container>
+                  <Row>
+                    {users.map((user) => (
+                      <Bcard user={user} />
+                    ))}
+                  </Row>
+                </Container> */}
+
+                {/* <ListGroup as="ol" numbered>
+                  {users.map((user) => (
+                    <Blistgroup user={user} />
                   ))}
-                </ListGroup>
+                </ListGroup> */}
               </>
             ) : (
               <>
                 <p>No users found.</p>
               </>
             )}
-
-
           </Col>
         </Row>
       </Container>
